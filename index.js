@@ -8,4 +8,5 @@ module.exports = exports = function(store){
 	.get('/:id', routes.findOne)
 	.post('/', routes.insert)
 	.put('/:id', routes.update);
+	.delete('/:id', routes.delete);
 };

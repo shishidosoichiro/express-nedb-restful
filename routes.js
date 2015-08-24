@@ -20,8 +20,16 @@ module.exports = exports = function(store){
 			})
 		},
 		update: function(req, res) {
-			store.update({_id: req.id}, req.body, function(err, doc){
+			store.update({_id: req.id}, req.body, function(err, num, doc){
 				if (err) return res.status(500).json(err);
+				if (num) return res.status(404).json({id: req.id});
+				res.json(doc);
+			})
+		},
+		delete: function(req, res) {
+			store.update({_id: req.id}, {}, function(err, num, doc){
+				if (err) return res.status(500).json(err);
+				if (num) return res.status(404).json({id: req.id});
 				res.json(doc);
 			})
 		}
